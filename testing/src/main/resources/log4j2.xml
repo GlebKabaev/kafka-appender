@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="a.em.log4j2.kafka">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[CONSOLE] %d{HH:mm:ss} %-5level %logger - %msg%n"/>
+        </Console>
+
+        <KafkaAppender
+                name="Kafka"
+                topic="test-logs"
+                bootstrapServers="localhost:9092">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg"/>
+        </KafkaAppender>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Kafka"/>
+        </Root>
+    </Loggers>
+</Configuration>
